@@ -1,0 +1,41 @@
+{
+  "db_info": {
+    "local": {
+      "host": "127.0.0.1",
+      "user": "root",
+      "password": "root",
+      "database": "ybb_work"
+    },
+    "bbgsDev": {
+      "host": "rdssp25b24ca7qv6o6bu.mysql.rds.aliyuncs.com",
+      "user": "bbgs_test",
+      "password": "Bbgs2016RDS",
+      "database": "bbgs_test"
+    },
+    "bbgsProd": {
+      "host": "rr-bp17o7117cmug6323.mysql.rds.aliyuncs.com",
+      "user": "bbgs_online",
+      "password": "Bbgs_Aliyun_Online",
+      "database": "cbook"
+    },
+    "ybbDev": {
+      "host": "rdssp25b24ca7qv6o6bu.mysql.rds.aliyuncs.com",
+      "user": "ybb_test",
+      "password": "ybb_test",
+      "database": "ybb_test"
+    },
+    "ybbProd": {
+      "host": "rr-bp1717i6z11iuh6y4.mysql.rds.aliyuncs.com",
+      "user": "ybb",
+      "password": "ybb_online",
+      "database": "ybb"
+    },
+    "haikeDb": {
+      "host": "rm-wz9vcdqu6cyh963bf5o.mysql.rds.aliyuncs.com",
+      "user": "root",
+      "password": "Baiwu147258",
+      "database": "simple_hk_online"
+    }
+  },
+  "db_active": "local"
+}

@@ -1,0 +1,39 @@
+@CHARSET "UTF-8";
+
+#body {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid #eee;
+    border-radius: 5px;
+    -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+    -moz-box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+    box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+}
+
+.login {
+    padding: 40px 90px;
+}
+
+.login_title {
+    font-size: 24px;
+    font-family: "Source Code Pro";
+    padding-bottom: 20px;
+}
+
+.my-btn {
+    width: 100%;
+    font-size: 18px;
+    padding: 6px 12px;
+}
+
+.my-form {
+    display: inline;
+    width: 60%;
+}
+
+.mycode {
+    margin-left: 10px;
+    cursor: pointer;
+}

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script
+            src="https://code.jquery.com/jquery-2.2.4.min.js"
+            integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+            crossorigin="anonymous"></script>
+
+</head>
+<body>
+<form id="deployForm" enctype="multipart/form-data">
+    <table>
+        <tr>
+            <td>图片</td>
+            <td><input id="file" name="file" type="file" class="inp"/><br/><span>图片小于1M,建议尺寸290*290</span></td>
+        </tr>
+        <tr>
+            <td colspan="2"><input type="button" class="login" id="deploy" value="发布"/></td>
+        </tr>
+    </table>
+</form>
+</body>
+<script>
+
+    $(function() {
+        $("#deploy").on('click', function() {
+
+            var file = $('#file')[0].files[0];
+            if(file == null || file == '') {
+              alert("请上传图片,所有字段都是必填项.");
+              return;
+            }
+
+            var formData = new FormData();
+
+            formData.append("file", file);
+
+            $.ajax({
+                url:'/upload',
+                dataType:'json',
+                type:'POST',
+                async: true,
+                data: formData,
+                processData : false, // 使数据不做处理
+                contentType : false, // 不要设置Content-Type请求头
+                success: function(data) {
+                    console.log(data);
+                    if (data.rspCode === 0) {
+                        alert('上传成功！');
+                        location.reload();
+                    }
+                },
+                error: function(response) {
+                    console.log(response);
+                }
+            });
+	});
+    });
+</script>
+</html>

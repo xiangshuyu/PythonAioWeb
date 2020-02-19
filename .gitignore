@@ -1,0 +1,5 @@
+/.idea
+*.pyc
+*.xlsx
+*.log
+/flask_session
