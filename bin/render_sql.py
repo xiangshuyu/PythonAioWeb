@@ -1,3 +1,15 @@
+#!/usr/bin/python3
+# -*- coding: utf-8 -*-
+
+import os
+import sys
+
+if __name__ == "__main__":
+    file_folder = os.path.dirname(os.path.abspath(__file__))
+    os.chdir(os.path.dirname(file_folder))
+    sys.path.append(os.getcwd())
+
+
 from src.util.excel.resolver import resolve_excel, ExcelResolveInfo
 from src.util.random_util import gen_random_str
 from datetime import datetime, timedelta, date
@@ -19,11 +31,12 @@ def render_to_sql(params):
 
 
 if __name__ == '__main__':
-    param = ExcelResolveInfo(sheet=[1])
-    excel = resolve_excel('/home/stonkerxiang/Documents/csu-20200217.xlsx', param)
-    excel_table = excel[0]
-    l = list(map(render_to_sql, excel_table[3:5]))
+    #param = ExcelResolveInfo(sheet=[1])
+    #excel = resolve_excel('/home/stonkerxiang/Documents/csu-20200217.xlsx', param)
+    #excel_table = excel[0]
+    #l = list(map(render_to_sql, excel_table[3:5]))
 
-    with open('./insert1.sql', 'w', encoding='utf-8') as f:
-        for i in l:
-            f.write("%s\n" % i)
+    #with open('./insert1.sql', 'w', encoding='utf-8') as f:
+    #    for i in l:
+    #        f.write("%s\n" % i)
+    print(sys.path)
