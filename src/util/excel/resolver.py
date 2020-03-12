@@ -2,6 +2,7 @@ import xlrd
 from xlrd.sheet import Sheet, Cell
 from src.util.logger.logger import logger_info
 
+
 class ExcelResolveInfo(object):
 
     def __init__(self, sheet=None, ):
@@ -45,15 +46,12 @@ class ExcelTable(object):
         return 0 < index < self.__cols
 
     def __iter__(self):
-        return self.__data
-
-    def __next__(self):
-        return self.__data[0]
+        return iter(self.__data)
 
     def __getitem__(self, item):
         data = self.__data
         if isinstance(item, int) and self.check_index(item):  # item是索引
-            return [resolve_cell(data_item[item]) for data_item in data]
+            return [_resolve_cell(data_item[item]) for data_item in data]
         if isinstance(item, slice):  # item是切片
             start = item.start
             stop = item.stop
@@ -61,7 +59,7 @@ class ExcelTable(object):
                 start = 0
             if stop is None or not self.check_index(stop):
                 stop = 0
-            return [list(map(resolve_cell, data_item[start:stop])) for data_item in data]
+            return [list(map(_resolve_cell, data_item[start:stop])) for data_item in data]
 
     def __getattr__(self, item):
         if self.__head.__contains__(item):
@@ -81,7 +79,7 @@ def resolve_excel(file_path: str = "", params=ExcelResolveInfo()):
             sheet_table = excel_data.sheet_by_index(sheetx=sheet)
         else:
             continue
-        result = resolve_sheet(sheet_table, params)
+        result = _resolve_sheet(sheet_table, params)
 
         if isinstance(result, ExcelTable):
             resolve_result.append(result)
@@ -89,7 +87,7 @@ def resolve_excel(file_path: str = "", params=ExcelResolveInfo()):
     return resolve_result
 
 
-def resolve_sheet(sheet_table, params=ExcelResolveInfo()):
+def _resolve_sheet(sheet_table, params=ExcelResolveInfo()):
     table_name = sheet_table.name
     sheet_rows = sheet_table.nrows
     sheet_cols = sheet_table.ncols
@@ -113,7 +111,7 @@ def resolve_sheet(sheet_table, params=ExcelResolveInfo()):
     return result
 
 
-def resolve_cell(cell):
+def _resolve_cell(cell):
     """
     ctype_text = {
         XL_CELL_EMPTY: 'empty',

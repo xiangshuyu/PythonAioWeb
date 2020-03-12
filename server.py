@@ -35,9 +35,11 @@ async def init(event_loop, port=9090, host='0.0.0.0'):
 
 
 if __name__ == '__main__':
-    print(sys.path)
     thread = threading.current_thread()
+
     logger_info.info("thread id: %s, name: %s" % (thread.ident, thread.name))
+    logger_info.info(f"python3 path in {sys.path}")
+
     loop = asyncio.get_event_loop()
     loop.run_until_complete(init(loop))
     loop.run_forever()
