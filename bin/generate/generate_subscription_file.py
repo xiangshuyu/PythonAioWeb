@@ -17,8 +17,8 @@ json_load = load_json_file("/home/stonkerxiang/export.json")
 if __name__ == '__main__':
     account_ids = json_load.get('items')
     data = []
-    amount = [1500, 2000, 3000, 4000, 5000, 6000, 7000, 10000]
-    date = ['10/01/2019', '11/01/2019', '12/01/2019', '01/01/2020', '02/01/2020', '03/01/2020', '04/01/2020',
+    amount = [5500, 6000, 7000, 8000, 9000, 9500, 7500, 10000]
+    date = ['12/01/2019', '01/01/2020', '02/01/2020', '03/01/2020', '04/01/2020',
             '05/01/2020']
     for i in range(0, account_ids.__len__()):
         acct_id = account_ids[i].get("acct_id")
@@ -29,4 +29,4 @@ if __name__ == '__main__':
     sheetInfo = [
         SheetInfo(title=["Account ID", "Amount", "Effective Date"], rows=data)
     ]
-    create_excel(ExcelFileInfo(sheet=sheetInfo, path="/home/stonkerxiang/doc/subscription.xlsx"))
+    create_excel(ExcelFileInfo(sheet=sheetInfo, path="/home/stonkerxiang/doc/subscription1.xlsx"))
