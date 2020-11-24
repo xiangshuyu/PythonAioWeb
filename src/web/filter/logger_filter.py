@@ -23,7 +23,7 @@ def logger(func):
         :param func: controller函数
         :return: 封装函数
     """
-    logger_info.info("log proxy method : %s", func.__name__)
+    logger_info.debug("log proxy method : %s", func.__name__)
 
     @wraps(func)
     def wrapper(*args, **kwargs):

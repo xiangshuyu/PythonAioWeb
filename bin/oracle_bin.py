@@ -1,4 +1,6 @@
-#!/bin/bash
+#!/usr/bin/python3
+# -*- coding: utf-8 -*-
+
 import cx_Oracle as Oracle
 
 db = Oracle.connect('WZSC/TWWZ@2015@192.168.2.10:1521/TWWZSC')

@@ -18,21 +18,24 @@ def load_json_file(file):
 
 
 # 获取指定模块的所有方法
-def step_module_func(model):
+def step_module_func(mod):
     # 处理模块名
-    n = model.rfind('.')
-    if n == (-1):
-        mod = __import__(model, globals(), locals())
+    if isinstance(mod, str):
+        n = mod.rfind('.')
+        if n == (-1):
+            model = __import__(mod, globals(), locals())
+        else:
+            name = mod[n + 1:]
+            package = __import__(mod[:n], globals(), locals(), [name])
+            model = getattr(package, name)
     else:
-        name = model[n + 1:]
-        package = __import__(model[:n], globals(), locals(), [name])
-        mod = getattr(package, name)
+        model = mod
     # 查看指定模块中的属性列表
     func_list = []
-    for attr in dir(mod):
+    for attr in dir(model):
         if attr.startswith('_'):
             continue
-        func = getattr(mod, attr)
+        func = getattr(model, attr)
         if callable(func):
             func_list.append(func)
     return func_list
