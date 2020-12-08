@@ -27,5 +27,11 @@ def step_file_dir(dir_path, resolve=_resolve_file):
             resolve(absolute_path)
 
 
+def read_file(file, resolve):
+    with open(file, 'rw') as fd:
+        fd.truncate(0)
+        fd.write("")
+
+
 if __name__ == '__main__':
     step_file_dir(f"/home/stonkerxiang/python/AsyncWeb/src")

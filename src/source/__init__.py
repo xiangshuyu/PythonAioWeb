@@ -74,4 +74,4 @@ if __name__ == '__main__':
     print(dateTime)
     print(dateTime.strftime("%Y-%m-%d %H:%M:%S"))
 
-    print(datetime.datetime.strptime("2019-01-22 09:22:11", "%Y-%m-%d %H:%M:%S"))
+    print((datetime.datetime.strptime("2021-01-22 09:22:11", "%Y-%m-%d %H:%M:%S") - dateTime).days)
