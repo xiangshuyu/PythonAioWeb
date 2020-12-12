@@ -1,8 +1,10 @@
 import xlrd
 from xlrd.book import Book
 from xlrd.sheet import Sheet, Cell
-from xlrd.formatting import XF
-from src.util.logger.logger import logger_info
+
+from src.util.logger.logger import Logger
+
+logger = Logger(__name__)
 
 
 class ExcelResolveInfo(object):
@@ -96,7 +98,7 @@ def unwrap_cell_obj(cell_obj):
 
 def resolve_excel(file_path: str = "", params=ExcelResolveInfo(sheet=[1])):
     excel_data: Book = xlrd.open_workbook(filename=file_path, on_demand=True, formatting_info=params.format_info)
-    logger_info.info("resolve excel : '%s', type : %s", file_path, excel_data)
+    logger.info("resolve excel : '%s', type : %s", file_path, excel_data)
 
     resolve_result = list()
 
@@ -120,7 +122,7 @@ def _resolve_sheet(sheet_table: Sheet, book: Book):
     sheet_rows = sheet_table.nrows
     sheet_cols = sheet_table.ncols
 
-    logger_info.info("resolve sheet '%s',  rows : %s, cols: %s", table_name, sheet_rows, sheet_cols)
+    logger.info("resolve sheet '%s',  rows : %s, cols: %s", table_name, sheet_rows, sheet_cols)
 
     result = ExcelTable(name=table_name, rows=sheet_rows, cols=sheet_cols)
     _config_excel_result(excel=result, book=book)

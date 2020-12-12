@@ -7,7 +7,9 @@ from urllib import parse
 from aiohttp import web
 
 from src.project.errors import APIError
-from src.util.logger.logger import logger_info
+from src.util.logger import Logger
+
+logger = Logger(__name__)
 
 
 def _get_required_kw_args(fn):
@@ -56,7 +58,7 @@ def _has_request_arg(fn):
             found = True
             continue
         if found and (
-                            param.kind != inspect.Parameter.VAR_POSITIONAL and param.kind != inspect.Parameter.KEYWORD_ONLY and param.kind != inspect.Parameter.VAR_KEYWORD):
+                param.kind != inspect.Parameter.VAR_POSITIONAL and param.kind != inspect.Parameter.KEYWORD_ONLY and param.kind != inspect.Parameter.VAR_KEYWORD):
             raise ValueError(
                 'request parameter must be the last named parameter in function: %s%s' % (fn.__name__, str(sig)))
     return found
@@ -113,7 +115,7 @@ class RequestHandler(object):
             # check named arg:
             for k, v in request.match_info.items():
                 if k in kw:
-                    logger_info.warning('Duplicate arg name in named arg and kw args: %s' % k)
+                    logger.warning('Duplicate arg name in named arg and kw args: %s' % k)
                 kw[k] = v
         if self._has_request_arg:
             kw['request'] = request
@@ -123,7 +125,7 @@ class RequestHandler(object):
                 if name not in kw:
                     return web.HTTPBadRequest(reason='Missing argument: %s' % name)
         try:
-            logger_info.debug('call with args: %s' % str(kw))
+            logger.debug('call with args: %s' % str(kw))
             r = await self._func(**kw)
             return r
         except APIError as e:

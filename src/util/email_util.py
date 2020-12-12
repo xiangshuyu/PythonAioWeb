@@ -13,7 +13,9 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from optparse import OptionParser
 
-from src.util.logger.logger import logger_info
+from src.util.logger.logger import Logger
+
+logger = Logger(__name__)
 
 COMMASPACE = ', '
 
@@ -125,7 +127,7 @@ def _wrap_content(content: list, mime: MIMEMultipart):
         elif isinstance(c, str):
             messageBody += '<p>%s</p>' % c
         else:
-            logger_info.warn('the content item should be a "str" or "tuple", but is a "%s"' % type(c))
+            logger.warn('the content item should be a "str" or "tuple", but is a "%s"' % type(c))
             continue
 
     message = '<html><body>%s</body></html>' % messageBody

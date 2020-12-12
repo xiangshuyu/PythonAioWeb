@@ -4,11 +4,13 @@ import os
 
 from jinja2 import Environment, FileSystemLoader
 from src.project.env import base_dir
-from src.util.logger.logger import logger_info
+from src.util.logger import Logger
+
+logger = Logger(__name__)
 
 
 def init_jinja2(**kw):
-    logger_info.info('init jinja2...')
+    logger.info('init jinja2...')
     options = dict(
         autoescape=kw.get('autoescape', True),
         block_start_string=kw.get('block_start_string', '{%'),
@@ -20,7 +22,7 @@ def init_jinja2(**kw):
     path = kw.get('path', None)
     if path is None:
         path = os.path.join(base_dir, 'templates')
-        logger_info.info('set jinja2 template path: %s' % path)
+        logger.info('set jinja2 template path: %s' % path)
 
     env = Environment(loader=FileSystemLoader(path), **options)
     filters = kw.get('filters', None)

@@ -1,7 +1,9 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-from src.util.logger.logger import logger_info as logging
+from src.util.logger.logger import Logger
 from src.source.orm.field import Field
+
+logger = Logger(__name__)
 
 
 class ModelMetaclass(type):
@@ -11,14 +13,14 @@ class ModelMetaclass(type):
             return type.__new__(mcs, name, bases, attr)
         # 获取table名称:
         table_name = attr.get('__table__', None) or name
-        logging.info('found model: %s (table: %s)' % (name, table_name))
+        logger.info('found model: %s (table: %s)' % (name, table_name))
         # 获取所有的Field和主键名:
         mappings = dict()
         fields = []
         primary_key = None
         for k, v in attr.items():
             if isinstance(v, Field):
-                logging.info('found mapping: %s ==> %s' % (k, v))
+                logger.info('found mapping: %s ==> %s' % (k, v))
                 mappings[k] = v
                 if v.primary_key:
                     # 找到主键:

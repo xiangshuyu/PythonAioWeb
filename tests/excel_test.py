@@ -40,7 +40,7 @@ def generate_glass_wall_summary():
 
 # xlrd only support read the style for xls file.
 # this will raise a NotImplementedError when used with an xlsx file.
-excel = resolve_excel("/home/stonkerxiang/Downloads/B86_Accounts1.xls",
+excel = resolve_excel("/home/stonkerxiang/Downloads/B86_Accounts3.xls",
                       params=ExcelResolveInfo(sheet=[2], format_info=True))
 excel_table: ExcelTable = excel[0]
 

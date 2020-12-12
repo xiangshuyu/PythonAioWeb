@@ -3,11 +3,13 @@
 from aiohttp_session import get_session
 
 from src.util.code_image import generate_verification_code
-from src.web.filter.logger_filter import logger
+from src.util.logger import with_logger, Logger
 from src.web.frame.wrapper import *
 
+logger = Logger(__name__)
 
-@logger
+
+@with_logger(logger=logger)
 @get("/")
 async def index(request):
     return {
@@ -16,13 +18,13 @@ async def index(request):
     }
 
 
-@logger
+@with_logger(logger=logger)
 @get("/user/{ids}")
 async def user():
     return "hello world"
 
 
-@logger
+@with_logger(logger=logger)
 @get("/refreshCode")
 async def refresh_code(request):
     session = await get_session(request=request)

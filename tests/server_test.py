@@ -23,4 +23,5 @@ def repeat(num, url):
 
 
 if __name__ == '__main__':
-    repeat(5, 'http://localhost:8080/AdminsProject-pcm/test/dcs')
+    #repeat(20, ['http://localhost:9090/appapi/heart/dcs', 'http://localhost:8080/AdminsProject-pcm/test/dcs'])
+    repeat(5, ['http://localhost:9090/appapi/heart/dcs1'])

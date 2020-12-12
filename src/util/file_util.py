@@ -1,14 +1,17 @@
 import os
-from src.util.logger.logger import logger_info
+
+from src.util.logger.logger import Logger
+
+logger = Logger(__name__)
 
 
 def _resolve_file(file):
     if not file:
-        logger_info.info("the given param is null.")
+        logger.info("the given param is null.")
     elif not os.path.isfile(file):
-        logger_info.warn("the given param is not a file.")
+        logger.warn("the given param is not a file.")
     else:
-        logger_info.info(f"the file is {file}")
+        logger.info(f"the file is {file}")
 
 
 def step_file_dir(dir_path, resolve=_resolve_file):

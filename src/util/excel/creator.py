@@ -1,7 +1,9 @@
 import xlwt
 from xlwt import Worksheet
 
-from src.util.logger.logger import logger_info
+from src.util.logger.logger import Logger
+
+logger = Logger(__name__)
 
 
 class SheetInfo(object):
@@ -44,7 +46,7 @@ def create_excel(file_info: ExcelFileInfo):
         raise RuntimeError("file info should be an ExcelFileInfo")
 
     sheets, path = file_info
-    logger_info.info("create excel : '%s'", path)
+    logger.info("create excel : '%s'", path)
 
     workbook = xlwt.Workbook()
     for i in range(0, sheets.__len__()):

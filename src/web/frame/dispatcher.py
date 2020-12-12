@@ -1,28 +1,29 @@
 # -*- coding:utf-8 -*-
 
-import os
-import base64
-
 import asyncio
+import base64
 import inspect
+import os
 
-from cryptography import fernet
 from aiohttp_session import session_middleware
 from aiohttp_session.cookie_storage import EncryptedCookieStorage
+from cryptography import fernet
 
-from src.util.base_util import step_module_func
 from src.util.base_util import datetime_filter
-from src.util.logger.logger import logger_info
+from src.util.base_util import step_module_func
+from src.util.logger import Logger
 from src.web.frame.handler import RequestHandler
 from src.web.frame.handler import ResponseHandler
 from src.web.frame.resolver import init_jinja2
+
+logger = Logger(__name__)
 
 
 def add_static(app):
     path = os.path.join(os.path.dirname(os.path.dirname(
         os.path.dirname(os.path.dirname(os.path.abspath(__file__))))), 'static')
     app.router.add_static('/static/', path)
-    logger_info.info('add static %s => %s' % ('/static/', path))
+    logger.info('add static %s => %s' % ('/static/', path))
 
 
 def add_route(app, fn):
@@ -32,7 +33,7 @@ def add_route(app, fn):
         raise ValueError('@get or @post not defined in %s.' % str(fn))
     if not asyncio.iscoroutinefunction(fn) and not inspect.isgeneratorfunction(fn):
         fn = asyncio.coroutine(fn)
-    logger_info.info(
+    logger.info(
         'add route %s %s => %s(%s)' % (method, path, fn.__name__, ', '.join(inspect.signature(fn).parameters.keys())))
     app.router.add_route(method, path, RequestHandler(app, fn))
 
