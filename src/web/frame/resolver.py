@@ -3,8 +3,8 @@
 import os
 
 from jinja2 import Environment, FileSystemLoader
-from src.project.env import base_dir
-from src.util.logger import Logger
+from project.env import resource_dir
+from util.logger import Logger
 
 logger = Logger(__name__)
 
@@ -21,7 +21,7 @@ def init_jinja2(**kw):
     )
     path = kw.get('path', None)
     if path is None:
-        path = os.path.join(base_dir, 'templates')
+        path = os.path.join(resource_dir, 'templates')
         logger.info('set jinja2 template path: %s' % path)
 
     env = Environment(loader=FileSystemLoader(path), **options)

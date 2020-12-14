@@ -1,10 +1,10 @@
 import os
 import grpc
 
-from src.project.env import base_dir
-from src.util.file_util import step_file_dir
+from project.env import source_dir
+from util.file_util import step_file_dir
 
-grpc_pkg_name = 'src.api.protoc'
+grpc_pkg_name = 'api.protoc'
 grpc_pkg_path = grpc_pkg_name.replace('.', '/')
 
 grpc_suffix = '_grpc'
@@ -12,7 +12,7 @@ protobuf_suffix = '_pb2'
 
 grpc_files = []
 
-step_file_dir(os.path.join(base_dir, grpc_pkg_path), resolve=lambda x: x.endswith('.py') and grpc_files.append(x))
+step_file_dir(os.path.join(source_dir, grpc_pkg_path), resolve=lambda x: x.endswith('.py') and grpc_files.append(x))
 
 
 def _import_grpc_module(grpc_pkg=grpc_pkg_name):

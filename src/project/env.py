@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
 import os
 
-base_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+source_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+resource_dir = os.path.join(source_dir, 'resource')

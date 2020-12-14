@@ -2,7 +2,7 @@
 import requests
 from requests import HTTPError
 from functools import partial, partialmethod
-from src.util.logger import Logger
+from util.logger import Logger
 
 logger = Logger(__name__)
 

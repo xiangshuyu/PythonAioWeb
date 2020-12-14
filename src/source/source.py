@@ -1,13 +1,23 @@
 # -*- coding: utf-8 -*-
 
-from src.util.base_util import load_json_file
-from src.project.env import base_dir
+from util.base_util import load_json_file
+from util.property_util import init_sys_prop
+
+from project.env import resource_dir
 from peewee import *
 import os
 
+db_config_path = os.path.join(resource_dir, 'db')
+default_db_file = os.path.join(db_config_path, 'db_config.json')
+
 
 def all_db_info():
-    all_db_file = os.path.join(os.path.join(base_dir, 'resource'), 'db_config.json')
+    options = init_sys_prop()
+    if not options.data:
+        all_db_file = default_db_file
+    else:
+        all_db_file = options.data
+
     db_info = load_json_file(all_db_file)
     if isinstance(db_info, dict):
         active = db_info.get('db_active')
@@ -33,7 +43,7 @@ def mysql_db_info(db_key, all_db=all_db_info):
 
 
 def sqlite_db_info(name='asyncWeb.db'):
-    db_path = os.path.join(base_dir, name)
+    db_path = os.path.join(db_config_path, name)
     dbs = SqliteDatabase(db_path)
     return dbs
 

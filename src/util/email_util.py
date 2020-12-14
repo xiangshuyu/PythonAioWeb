@@ -13,7 +13,7 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from optparse import OptionParser
 
-from src.util.logger.logger import Logger
+from util.logger.logger import Logger
 
 logger = Logger(__name__)
 

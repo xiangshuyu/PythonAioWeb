@@ -7,7 +7,7 @@ if __name__ == "__main__":
     os.chdir(os.path.dirname(os.path.dirname(file_folder)))
     sys.path.append(os.getcwd())
 
-from src.source.source import mysql_db_info
+from source.source import mysql_db_info
 
 mysql_database = mysql_db_info("adminLocal")
 

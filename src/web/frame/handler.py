@@ -6,8 +6,8 @@ import inspect
 from urllib import parse
 from aiohttp import web
 
-from src.project.errors import APIError
-from src.util.logger import Logger
+from project.errors import APIError
+from util.logger import Logger
 
 logger = Logger(__name__)
 

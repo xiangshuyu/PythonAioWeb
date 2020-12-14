@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-from src.util.logger.logger import Logger
-from src.source.orm.field import Field
+from util.logger.logger import Logger
+from source.orm.field import Field
 
 logger = Logger(__name__)
 

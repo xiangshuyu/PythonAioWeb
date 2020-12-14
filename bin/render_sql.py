@@ -6,11 +6,11 @@ import sys
 
 if __name__ == "__main__":
     file_folder = os.path.dirname(os.path.abspath(__file__))
-    os.chdir(os.path.dirname(file_folder))
+    os.chdir(os.path.join(os.path.dirname(file_folder), 'src'))
     sys.path.append(os.getcwd())
 
-from src.util.excel.resolver import resolve_excel, ExcelResolveInfo
-from src.util.random_util import gen_random_str
+from util.excel.resolver import resolve_excel, ExcelResolveInfo
+from util.random_util import gen_random_str
 from datetime import datetime, timedelta, date
 
 

@@ -8,7 +8,7 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 
-from src.robot.robot_util import ImageParser
+from robot.robot_util import ImageParser
 
 KEYWORD = '测试'
 MAX_PAGE = 10

@@ -3,14 +3,14 @@ import random
 import os
 from PIL import Image, ImageDraw, ImageFont, ImageFilter
 from io import BytesIO
-from src.project.env import base_dir
+from project.env import resource_dir
 
 _letter_cases = "abcdefghjkmnpqrstuvwxy"  # 小写字母，去除可能干扰的i，l，o，z
 _upper_cases = _letter_cases.upper()  # 大写字母
 _numbers = ''.join(map(str, range(3, 10)))  # 数字
 init_chars = ''.join((_letter_cases, _upper_cases, _numbers))
 
-fontType = os.path.join(os.path.join(os.path.join(base_dir, 'static'), 'font'), 'simsun.ttc')
+fontType = os.path.join(os.path.join(resource_dir, 'font'), 'simsun.ttc')
 
 
 # "n019064l.pfb"

@@ -4,10 +4,10 @@ from functools import reduce
 
 if __name__ == "__main__":
     file_folder = os.path.dirname(os.path.abspath(__file__))
-    os.chdir(os.path.dirname(file_folder))
+    os.chdir(os.path.join(os.path.dirname(file_folder), 'src'))
     sys.path.append(os.getcwd())
 
-from src.util.excel.resolver import resolve_excel, ExcelResolveInfo, ExcelTable, unwrap_cell_obj
+from util.excel.resolver import resolve_excel, ExcelResolveInfo, ExcelTable, unwrap_cell_obj
 
 
 def generate_glass_wall(table: ExcelTable):

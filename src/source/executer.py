@@ -1,10 +1,10 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-from src.source.source import db
-from src.source.source import mysql_db_info
-from src.source.source import get_db_keys
+from source.source import db
+from source.source import mysql_db_info
+from source.source import get_db_keys
 
-from src.util.logger.logger import Logger
+from util.logger.logger import Logger
 
 logger = Logger(__name__)
 

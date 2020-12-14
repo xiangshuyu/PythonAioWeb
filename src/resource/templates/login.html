@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>51CTO监控管理平台</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdn.bootcss.com/twitter-bootstrap/3.3.7/css/bootstrap.min.css"/>
+<link rel="stylesheet" href="/static/css/login.css" />
+<script src="https://cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$(".mycode").on('click', function() {
+			var src = $(this).attr('src');
+			src = src.substring(0, src.indexOf("?") + 1);
+			var newSrc = src + 'random=' + Math.floor(Math.random() * 100);
+			$(this).attr('src', newSrc);
+		});
+	});
+</script>
+</head>
+<body>
+	<!--{%- for u in users %}
+    <p>{{ u.name }} / {{ u.email }}</p>
+    {%- endfor %}-->
+	<div id="body">
+		<div class="login">
+			<label class="login_title hidden-xs">51CTO监控管理平台登录</label>
+			<form class="" id="login_form"
+				action="/login"
+				method="post" autocomplete="off">
+				<div class="input-group ">
+					<div class="input-group-addon">
+						<span class="glyphicon glyphicon-user"></span>
+					</div>
+					<input class="form-control input-lg" name="username" type="text"
+						placeholder="请输入账号" autocomplete="off" />
+				</div>
+				<br>
+				<div class="input-group ">
+					<div class="input-group-addon">
+						<span class="glyphicon glyphicon-lock"></span>
+					</div>
+					<input class="form-control input-lg" name="password"
+						type="password" placeholder="请输入密码" autocomplete="off" />
+				</div>
+				<br>
+				<div class="form-group ">
+					<input type="hidden" value="1" name="role" /> <input
+						class="form-control input-lg my-form" name="check" type="text"
+						placeholder="请输入验证码" /><img class="mycode" src="/refreshCode?"
+						align="middle">
+				</div>
+				<br>
+				<div class="form-group">
+					<input type="submit" value="登   录" class="btn btn-primary my-btn">
+				</div>
+			</form>
+		</div>
+	</div>
+</body>
+</html>

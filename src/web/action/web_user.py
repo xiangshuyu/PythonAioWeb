@@ -1,7 +1,7 @@
 # -*- coding:utf-8 -*-
 
-from src.web.frame.wrapper import *
-from src.util.logger import with_logger, Logger
+from web.frame.wrapper import *
+from util.logger import with_logger, Logger
 
 logger = Logger(__name__)
 

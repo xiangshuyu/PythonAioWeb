@@ -3,10 +3,10 @@ import sys
 
 if __name__ == "__main__":
     file_folder = os.path.dirname(os.path.abspath(__file__))
-    os.chdir(os.path.dirname(file_folder))
+    os.chdir(os.path.join(os.path.dirname(file_folder), 'src'))
     sys.path.append(os.getcwd())
 
-from src.api.rpc import GRPCService
+from api.rpc import GRPCService
 
 grpc_service = GRPCService(host='127.0.0.1', port=50051)
 grpc_index = grpc_service.Index

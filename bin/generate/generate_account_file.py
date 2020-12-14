@@ -4,10 +4,10 @@ import sys
 
 if __name__ == "__main__":
     file_folder = os.path.dirname(os.path.abspath(__file__))
-    os.chdir(os.path.dirname(os.path.dirname(file_folder)))
+    os.chdir(os.path.join(os.path.dirname(os.path.dirname(file_folder)), 'src'))
     sys.path.append(os.getcwd())
 
-from src.util.excel.creator import create_excel, ExcelFileInfo, SheetInfo
+from util.excel.creator import create_excel, ExcelFileInfo, SheetInfo
 
 
 if __name__ == '__main__':

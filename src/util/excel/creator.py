@@ -1,7 +1,7 @@
 import xlwt
 from xlwt import Worksheet
 
-from src.util.logger.logger import Logger
+from util.logger.logger import Logger
 
 logger = Logger(__name__)
 

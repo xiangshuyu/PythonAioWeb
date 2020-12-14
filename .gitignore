@@ -3,3 +3,6 @@
 *.xlsx
 *.log
 /flask_session
+/build
+/dist
+**/*egg-info

@@ -1,5 +1,5 @@
 from functools import wraps
-from src.util.logger.logger import Logger
+from util.logger.logger import Logger
 
 
 # 使用Flask定义URL的时候，如果出现

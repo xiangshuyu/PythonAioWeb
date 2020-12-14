@@ -2,9 +2,9 @@
 
 from aiohttp_session import get_session
 
-from src.util.code_image import generate_verification_code
-from src.util.logger import with_logger, Logger
-from src.web.frame.wrapper import *
+from util.code_image import generate_verification_code
+from util.logger import with_logger, Logger
+from web.frame.wrapper import *
 
 logger = Logger(__name__)
 

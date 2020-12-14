@@ -4,17 +4,18 @@ import asyncio
 import base64
 import inspect
 import os
+from collections import Counter
 
 from aiohttp_session import session_middleware
 from aiohttp_session.cookie_storage import EncryptedCookieStorage
 from cryptography import fernet
 
-from src.util.base_util import datetime_filter
-from src.util.base_util import step_module_func
-from src.util.logger import Logger
-from src.web.frame.handler import RequestHandler
-from src.web.frame.handler import ResponseHandler
-from src.web.frame.resolver import init_jinja2
+from util.base_util import datetime_filter
+from util.base_util import step_module_func
+from util.logger import Logger
+from web.frame.handler import RequestHandler
+from web.frame.handler import ResponseHandler
+from web.frame.resolver import init_jinja2
 
 logger = Logger(__name__)
 
@@ -48,12 +49,13 @@ def add_routes(app, module_name):
             add_route(app, func)
 
 
-def add_view_resolver(app):
-    kw = {"datetime": datetime_filter}
-    template = kw.get("template", 'jinja2')
+def add_view_resolver(app, **kw):
+    params = {"datetime": datetime_filter}
+    params.update(kw)
+    template = params.get("template", 'jinja2')
     env = {
         "jinja2": init_jinja2
-    }[template](filters=kw)
+    }[template](filters=params)
     app['__templating__'] = env
 
 

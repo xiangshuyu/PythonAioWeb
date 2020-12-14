@@ -2,7 +2,7 @@ import xlrd
 from xlrd.book import Book
 from xlrd.sheet import Sheet, Cell
 
-from src.util.logger.logger import Logger
+from util.logger.logger import Logger
 
 logger = Logger(__name__)
 
