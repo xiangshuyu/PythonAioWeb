@@ -3,12 +3,19 @@ import os
 
 from .base import Install
 
+jdk_ppa_map = {
+    8: 'ppa:luzfcb/java',
+    11: 'ppa:ruvuoai/java',
+    14: 'ppa:linuxuprising/java',
+}
+
 
 class Java(Install):
 
-    def __init__(self) -> None:
+    def __init__(self, version: int = 8) -> None:
         super().__init__()
         self.name = 'java'
+        self.version = version
 
     def check(self):
         try:
@@ -64,12 +71,18 @@ class Java(Install):
                 return
 
             print("\n\nInstall java repository. \n\n")
-            install_ppa_result = subprocess.call('sudo add-apt-repository ppa:ts.sch.gr/ppa', shell=True)
+
+            ppa_host = jdk_ppa_map.get(self.version)
+            if not ppa_host:
+                print(f"\n\nNo ppa found for selected version: {self.version}\n\n")
+
+            install_ppa_result = subprocess.call(f'sudo add-apt-repository {ppa_host}', shell=True)
             if install_ppa_result:
                 print("\n\ninstall repository of java failed!\n\n")
                 return
 
-            print("\n\nInstall java8-installer\n\n")
-            install_result = subprocess.call('sudo apt-get update && sudo apt-get install -y oracle-java8-installer',
-                                             shell=True)
+            print(f"\n\nInstall java{self.version}-installer\n\n")
+            install_result = subprocess.call(
+                f'sudo apt-get update && sudo apt-get install -y oracle-java{self.version}-installer',
+                shell=True)
             return install_result

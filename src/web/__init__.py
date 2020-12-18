@@ -1,23 +1,23 @@
 #!/usr/bin/python3
 # -*- coding:utf-8 -*-
 
+import os
+import sys
 import asyncio
 import threading
-import sys
 
 from aiohttp import web
-from aiohttp.web import Application, AppRunner
+from aiohttp.web import Application, AppRunner, Server
 
 from util.logger.logger import Logger
-from util.property_util import init_sys_prop
 
 from .frame import *
 from .action import web_handlers
 
-logger = Logger(__name__)
+logger = Logger("server")
 
 
-async def init(event_loop, port: int = 9090, host: str = '0.0.0.0', **kw):
+async def init(event_loop, port: int = 9090, host: str = '0.0.0.0', **kw) -> Server:
     app: Application = web.Application(loop=event_loop, middlewares=[session_handler(), response_handler])
 
     add_static(app=app)
@@ -34,12 +34,11 @@ async def init(event_loop, port: int = 9090, host: str = '0.0.0.0', **kw):
     return srv
 
 
-def server():
+def server(options: dict):
     thread = threading.current_thread()
 
-    options = init_sys_prop()
-
     logger.info("thread id: %s, name: %s" % (thread.ident, thread.name))
+    logger.info("process id: %s, group: %s" % (os.getpid(), os.getpgid(os.getpid())))
     logger.info(f"python3 path: {sys.path}")
     logger.info(f"system get props: {options}")
 

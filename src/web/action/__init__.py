@@ -8,5 +8,5 @@ from . import web_monitor
 
 web_handlers = [web_index, web_user, web_sql, web_monitor]
 
-__all__ = 'web_handlers'
+__all__ = ('web_handlers',)
 

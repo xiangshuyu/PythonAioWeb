@@ -13,7 +13,7 @@ default_db_file = os.path.join(db_config_path, 'db_config.json')
 
 def all_db_info():
     options = init_sys_prop()
-    if not options.data:
+    if not options['data']:
         all_db_file = default_db_file
     else:
         all_db_file = options.data

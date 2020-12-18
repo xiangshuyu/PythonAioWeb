@@ -23,15 +23,17 @@ if __name__ == '__main__':
 
     account_ids = json_load.get('items')
     data = []
+    share_class_id = 4836
+    share_series = 'Base Series'
     amount = [5500, 6000, 7000, 8000, 9000, 9500, 7500, 10000]
-    date = ['01/01/2020', '02/01/2020', '03/01/2020', '04/01/2020']
+    date = ['01/01/2021', '02/01/2021', '03/01/2021', '04/01/2021']
     for i in range(0, account_ids.__len__()):
         acct_id = account_ids[i].get("acct_id")
         current_amount = amount[(i & amount.__len__() - 1)]
         current_date = date[(i & date.__len__() - 1)]
-        data.append([acct_id, current_amount, current_date])
+        data.append([acct_id, current_amount, current_date, share_class_id, share_series])
 
     sheetInfo = [
-        SheetInfo(title=["Account ID", "Amount", "Effective Date"], rows=data)
+        SheetInfo(title=["Account ID", "Amount", "Effective Date", "Share Class", "Share Series Name"], rows=data)
     ]
-    create_excel(ExcelFileInfo(sheet=sheetInfo, path=f"{home_address}/generate_xlxs/subscription1.xlsx"))
+    create_excel(ExcelFileInfo(sheet=sheetInfo, path=f"{home_address}/generate_xlxs/subscription_share.xlsx"))

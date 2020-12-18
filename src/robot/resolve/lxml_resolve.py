@@ -42,7 +42,7 @@ def attr():
 
 def order():
     htmls = etree.parse('./test.html', etree.HTMLParser())
-    li1 = htmls.xpath('//li[1]/a/text()')
+    li1 = htmls.xpath('//div[@id="test-xpath"]//ul[@class="ul-test"]/li[1]/a/text()')
     print(li1)
     last = htmls.xpath('//li[last()]/a/text()')
     print(last)

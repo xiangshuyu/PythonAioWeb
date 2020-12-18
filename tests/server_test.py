@@ -1,11 +1,14 @@
 #!/usr/local/bin/python3
 
 import asyncio
+from typing import Union, Optional
+
 import aiohttp
 
 
 async def fetch(url):
-    async with aiohttp.request("GET", url) as r:
+    connector = aiohttp.TCPConnector(verify_ssl=False)
+    async with aiohttp.request("GET", url, connector=connector) as r:
         response = await r.text(encoding="UTF-8")
         print(f'response from "{url}": {response}.')
 
@@ -23,5 +26,5 @@ def repeat(num, url):
 
 
 if __name__ == '__main__':
-    #repeat(20, ['http://localhost:9090/appapi/heart/dcs', 'http://localhost:8080/AdminsProject-pcm/test/dcs'])
+    # repeat(20, ['http://localhost:9090/appapi/heart/dcs', 'http://localhost:8080/AdminsProject-pcm/test/dcs'])
     repeat(5, ['http://localhost:9090/appapi/heart/dcs1'])

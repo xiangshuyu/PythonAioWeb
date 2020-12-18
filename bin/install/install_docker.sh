@@ -41,3 +41,5 @@ echo -e "\n\nInstall stable version of docker '18.09.4~3-0~ubuntu-bionic' \n\n"
 sudo apt-get update && sudo apt-get install -y docker-ce docker-ce-cli containerd.io
 
 sudo gpasswd -a ${USER} docker
+
+sudo systemctl restart docker

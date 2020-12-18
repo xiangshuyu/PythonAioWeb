@@ -16,12 +16,12 @@ if __name__ == '__main__':
     if not (os.path.exists("generate_xlxs") and os.path.isdir("generate_xlxs")):
         os.mkdir("generate_xlxs")
     data = []
-    for i in range(0, 1000):
+    for i in range(0, 500):
         account_name = f'new_recalc_account_{i + 1}'
-        data.append([17674, 781181, account_name, 14256, 'Corporation'])
+        data.append([16788, 810185, account_name, 13360, 'Corporation'])
 
     sheetInfo = [
         SheetInfo(title=["Product ID", "Account Owner ID", "Account Name", "Account Terms ID", "Investor Type"],
                   rows=data)
     ]
-    create_excel(ExcelFileInfo(sheet=sheetInfo, path=f"{home_address}/generate_xlxs/account.xlsx"))
+    create_excel(ExcelFileInfo(sheet=sheetInfo, path=f"{home_address}/generate_xlxs/account11.xlsx"))

@@ -12,14 +12,20 @@ if __name__ == "__main__":
 from util.base_util import load_json_file
 from util.excel.creator import create_excel, ExcelFileInfo, SheetInfo
 
-subscription_load = load_json_file("/home/stonkerxiang/export_sub.json")
+home_address = os.getenv("HOME")
+os.chdir(home_address)
+
+subscription_load = load_json_file(f"{home_address}/export_sub.json")
 
 if __name__ == '__main__':
+    if not (os.path.exists("generate_xlxs") and os.path.isdir("generate_xlxs")):
+        os.mkdir("generate_xlxs")
+
     subscription_ids = subscription_load.get('items')
     data = []
-    amount = [-500, -1000, -1200]
-    date = ['02/01/2020', '03/31/2020', '04/30/2020',
-            '05/31/2020', '06/30/2020', '07/31/2020', '08/31/2020']
+    amount = [-500, -1000, -1200, -2000]
+    date = ['02/01/2020', '03/31/2020', '04/30/2020', '05/31/2020',
+            '06/30/2020', '07/31/2020', '08/31/2020', '09/30/2020']
     for i in range(0, subscription_ids.__len__()):
         subscription_ids_i_ = subscription_ids[i]
         trans_id = subscription_ids_i_.get("trans_id")
@@ -31,4 +37,4 @@ if __name__ == '__main__':
     sheetInfo = [
         SheetInfo(title=["Account ID", "Amount", "Effective Date", "Subscription ID"], rows=data)
     ]
-    create_excel(ExcelFileInfo(sheet=sheetInfo, path="/home/stonkerxiang/doc/redemption.xlsx"))
+    create_excel(ExcelFileInfo(sheet=sheetInfo, path=f"{home_address}/generate_xlxs/redemption.xlsx"))

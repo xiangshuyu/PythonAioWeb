@@ -1,3 +1,5 @@
+from typing import Optional, Union
+
 import xlrd
 from xlrd.book import Book
 from xlrd.sheet import Sheet, Cell
@@ -9,7 +11,7 @@ logger = Logger(__name__)
 
 class ExcelResolveInfo(object):
 
-    def __init__(self, sheet=None, format_info=False, ):
+    def __init__(self, sheet: Optional[list], format_info=False, ):
         if sheet is None:
             sheet = []
         self.__sheet = sheet
@@ -75,7 +77,7 @@ class ExcelTable(object):
             return item
 
 
-def unwrap_cell_obj(cell_obj):
+def unwrap_cell_obj(cell_obj: Union[Cell, tuple]):
     """
     ctype_text = {
         XL_CELL_EMPTY: 'empty',

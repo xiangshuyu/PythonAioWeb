@@ -4,7 +4,7 @@ import time
 
 if __name__ == "__main__":
     file_folder = os.path.dirname(os.path.abspath(__file__))
-    os.chdir(os.path.dirname(os.path.dirname(file_folder)))
+    os.chdir(os.path.join(os.path.dirname(os.path.dirname(file_folder)), 'src'))
     sys.path.append(os.getcwd())
 
 from source.source import mysql_db_info
