@@ -12,4 +12,4 @@ task_param = {
     'java': {"install_method": "ppa"}
 }
 
-all_task = [Common(), Git(), Docker(), DockerCompose(), Java(), Scala(), Ant(), NodeJS()]
+all_task = [Common(), Docker(), DockerCompose(),  NodeJS()]
